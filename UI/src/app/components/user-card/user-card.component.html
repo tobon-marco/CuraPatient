@@ -1,0 +1,13 @@
+<div class="card" >
+    <img src="..." class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">{{employeeToShow?.name}}</h5>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">Employee Id: {{employeeToShow?.employee_id}}</li>
+      <li class="list-group-item">Supervisors: {{employeeToShow?.supervisors}}</li>
+    </ul>
+    <div class="card-body">
+      <a [href]="'tel:'+ employeeToShow?.phone_number" class="card-link">{{employeeToShow?.phone_number}}</a>
+    </div>
+  </div>

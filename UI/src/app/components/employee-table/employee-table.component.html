@@ -1,0 +1,53 @@
+<div class="container-fluid h-100">
+    <div class="row">
+        <div class="col-sm-6 col-md-3">
+            <form class="d-flex" role="search" (ngSubmit)="searchFor()">
+                <div class="input-group mb-3">
+                    <select class="form-select" id="searchOption" (change)="updateSearchOption($event)">
+                        <option value="name">Name</option>
+                        <option value="employee_id">Employee Id</option>
+                    </select>
+                    <input class="form-control me-2" [attr.type]="searchOption === 'name' ? 'search': 'number'" placeholder="Search" aria-label="Search"
+                        name="searchTerm" [(ngModel)]="searchTerm">
+                    <button class="btn btn-outline-primary" type="submit">Search</button>
+                </div>
+            </form>
+        </div>
+        <div class="col-sm-6 col-md-9">
+            <ul class="list-group list-group-horizontal d-flex justify-content-end ">
+                <!-- <li class="list-group-item">
+                    <button type="button" class="btn btn-outline-secondary" (click)="resetView()" >Reset Changes</button>
+                </li> -->
+                <li class="list-group-item" *ngIf="objectKeys(changedRows).length === 0">
+                    <button type="button" class="btn btn-outline-primary" disabled>Update</button>
+                </li>
+                <li class="list-group-item"*ngIf="objectKeys(changedRows).length > 0" >
+                    <button type="button" class="btn btn-primary" (click)="updateEmployees()" >Update
+                        <span class="badge text-bg-secondary rounded-pill bg-danger">{{objectKeys(changedRows).length}}</span>
+                    </button>
+                </li>
+                <li class="list-group-item">
+                    <button type="button" class="btn btn-success">Add</button>
+                </li>
+
+                <li class="list-group-item" *ngIf="toDelete === null">
+                    <button type="button" class="btn btn-outline-danger" disabled>Delete</button>
+                </li>
+                <li class="list-group-item" *ngIf="toDelete !== null">
+                    <button type="button" class="btn btn-danger" (click)="deleteEmployee()">Delete</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="row h-100">
+        <!-- AG Grid Angular Component -->
+        <ag-grid-angular class="ag-theme-alpine w-100 h-100" [columnDefs]="columnDefs" [defaultColDef]="defaultColDef"
+            [rowData]="employeeList" [rowSelection]="'single'" [suppressRowClickSelection]="true"
+            [animateRows]="true" (gridReady)="onGridReady($event)" [pagination]="true" [paginationAutoPageSize]="true"
+            (cellClicked)="onCellClicked($event)" (rowSelected)="onRowSelected($event)"
+            (selectionChanged)="onSelectionChanged($event)"
+            (cellValueChanged)="onCellValueChanged($event)"
+            >
+        </ag-grid-angular>
+    </div>
+</div>
