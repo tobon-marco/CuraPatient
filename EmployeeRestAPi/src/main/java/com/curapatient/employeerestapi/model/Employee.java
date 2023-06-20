@@ -5,6 +5,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import org.hibernate.annotations.Generated;
 
 @Entity
 @Table(name="Employees")
@@ -12,6 +13,7 @@ public class Employee {
 
 //    @JsonProperty("employee_id")
     @Id
+    @Generated
     @Column(name="EMPLOYEE_ID", updatable = false, nullable = false)
     @JsonProperty("employee_id")
     private Long employeeId;

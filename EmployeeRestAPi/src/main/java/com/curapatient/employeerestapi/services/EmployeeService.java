@@ -100,6 +100,7 @@ public class EmployeeService {
         }
     }
     public Employee addEmployee(Employee employee) {
+        employee.setActive(true);
         return employeeRepository.save(employee);
     }
 
