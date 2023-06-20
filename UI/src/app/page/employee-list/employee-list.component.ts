@@ -5,6 +5,7 @@ import { EmployeeService } from 'src/app/services/employee.service';
 import { StorageService } from 'src/app/services/storage.service';
 import { Employee, SearchObject } from 'src/interfaces';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-employee-list',
@@ -64,7 +65,8 @@ export class EmployeeListComponent implements OnInit {
 
   constructor(
     private storageService: StorageService,
-    private employeeService: EmployeeService) {
+    private employeeService: EmployeeService,
+    private router: Router) {
   }
 
   ngOnInit(): void {
@@ -153,6 +155,12 @@ export class EmployeeListComponent implements OnInit {
       this.employeeService.updateBatchEmployees(toUpdate);
     }
   }
+
+
+  addEmployee(nothing: null): void {
+    this.router.navigate(['/employee/create'])
+  }
+
   isAdmin(): boolean {
     return this.storageService.isAdmin();
   }

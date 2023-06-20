@@ -1,0 +1,10 @@
+<div class="container-fluid text-center p-0">
+    <div class="row">
+        <app-header [name]="employee.name" (logoutEvent)="logout()" [isAdmin]="isAdmin()"></app-header>
+    </div>
+    <div class="row">
+        <div class="col">
+            <app-user-card [editable]="true" [employee]="employeeToAdd" (employeeUpdatedEvent)="createEmployee($event)"></app-user-card>
+        </div>
+    </div>
+</div>

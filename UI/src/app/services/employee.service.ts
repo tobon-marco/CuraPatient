@@ -62,7 +62,7 @@ export class EmployeeService {
   }
 
   addEmployee(employeeToAdd: Employee): Observable<Employee> {
-    return this.httpClient.put<Employee>(
+    return this.httpClient.post<Employee>(
       this.EMPLOYEE_API + 'add',
       employeeToAdd,
       httpOptions

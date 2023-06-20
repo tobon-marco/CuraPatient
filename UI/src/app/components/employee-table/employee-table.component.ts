@@ -29,6 +29,9 @@ export class EmployeeTableComponent {
   @Output()
   public updateEmployeesEvent: EventEmitter<Employee[]> = new EventEmitter<Employee[]>();
 
+  @Output()
+  public addEmployeesEvent: EventEmitter<null> = new EventEmitter<null>();
+
   public toDelete: Employee | null = null;
 
   public searchTerm: any;
@@ -135,5 +138,9 @@ export class EmployeeTableComponent {
         searchQuery: this.searchTerm
       });
     }
+  }
+
+  addEmployee(): void {
+      this.addEmployeesEvent.emit();
   }
 }

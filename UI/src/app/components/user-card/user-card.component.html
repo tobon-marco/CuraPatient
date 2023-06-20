@@ -1,13 +1,67 @@
-<div class="card" >
-    <img src="..." class="card-img-top" alt="...">
-    <div class="card-body">
-      <h5 class="card-title">{{employeeToShow?.name}}</h5>
-    </div>
-    <ul class="list-group list-group-flush">
-      <li class="list-group-item">Employee Id: {{employeeToShow?.employee_id}}</li>
-      <li class="list-group-item">Supervisors: {{employeeToShow?.supervisors}}</li>
-    </ul>
-    <div class="card-body">
-      <a [href]="'tel:'+ employeeToShow?.phone_number" class="card-link">{{employeeToShow?.phone_number}}</a>
-    </div>
+<div class="card" *ngIf="editable === false">
+
+  <img src="..." class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">{{employeeToShow.name}}</h5>
   </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">Employee Id: {{employeeToShow.employee_id}}</li>
+    <li class="list-group-item">Supervisors: {{employeeToShow.supervisors}}</li>
+  </ul>
+  <div class="card-body">
+    <a [href]="'tel:'+ employeeToShow.phone_number" class="card-link">{{employeeToShow.phone_number}}</a>
+  </div>
+</div>
+
+
+<div class="card" *ngIf="editable === true">
+  <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+    <div class="form-group row">
+      <label for="employeeName" class="col-sm-2 col-form-label">Employee Name</label>
+      <div class="col-sm-10">
+
+        <input type="text" class="form-control" name="employeeName" [(ngModel)]="employeeToShow.name" required
+          #employeeName="ngModel" [ngClass]="{ 'is-invalid': f.submitted && employeeName.errors }"
+          placeholder="Enter employee's name">
+        <div class="alert alert-danger" role="alert" *ngIf="employeeName.errors && f.submitted"
+          class="invalid-feedback">
+          Name is required!
+        </div>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="employeeSupervisors" class="col-sm-2 col-form-label">Employee Supervisors</label>
+      <div class="col-sm-10">
+
+        <input type="text" class="form-control" name="employeeSupervisors" [(ngModel)]="employeeToShow.supervisors"
+          required #employeeSupervisors="ngModel"
+          [ngClass]="{ 'is-invalid': f.submitted && employeeSupervisors.errors }"
+          placeholder="Enter employee's supervisors">
+        <div class="alert alert-danger" role="alert" *ngIf="employeeSupervisors.errors && f.submitted"
+          class="invalid-feedback">
+          Supervisors is required!
+        </div>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="employeePhoneNumber" class="col-sm-2 col-form-label">Phone Number</label>
+      <div class="col-sm-10">
+        <input type="number" class="form-control" name="employeePhoneNumber" [(ngModel)]="employeeToShow.phone_number"
+          required #employeePhoneNumber="ngModel"
+          [ngClass]="{ 'is-invalid': f.submitted && employeePhoneNumber.errors }"
+          placeholder="Enter employee's phone number">
+        <div class="alert alert-danger" role="alert" *ngIf="employeePhoneNumber.errors && f.submitted"
+          class="invalid-feedback">
+          Phone number is required!
+        </div>
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="col-sm-10">
+        <button type="submit" class="btn btn-success">Create</button>
+      </div>
+    </div>
+  </form>
+
+
+</div>
