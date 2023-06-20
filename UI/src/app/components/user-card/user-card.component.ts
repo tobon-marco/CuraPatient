@@ -1,4 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { outputAst } from '@angular/compiler';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Employee } from 'src/interfaces';
 
 @Component({
@@ -8,8 +9,30 @@ import { Employee } from 'src/interfaces';
 })
 export class UserCardComponent {
   @Input("employee")
-  employeeToShow: Employee | null = null
+  employeeToShow!: Employee;
+  
+  @Input("editable")
+  editable: boolean = false
+
+
+  @Output()
+  employeeUpdatedEvent: EventEmitter<Employee> = new EventEmitter<Employee>();
+
+
   constructor() {
 
   }
+
+  onChange(field: string, event: Event): void
+  {
+  }
+
+  onSubmit(): void {
+    debugger;
+    this.employeeUpdatedEvent.emit(this.employeeToShow);
+  }
+
+
+
+
 }

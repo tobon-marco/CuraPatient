@@ -27,6 +27,7 @@ import { UserCardComponent } from './components/user-card/user-card.component';
 import { AgGridModule } from 'ag-grid-angular';
 import { httpInterceptorProviders } from './utils/http.interceptor';
 import { EmployeeTableComponent } from './components/employee-table/employee-table.component';
+import { EmployeeCreateComponent } from './page/employee-create/employee-create.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { EmployeeTableComponent } from './components/employee-table/employee-tab
     LeftSideBarComponent,
     UserCardComponent,
     EmployeeTableComponent,
+    EmployeeCreateComponent,
   ],
   imports: [
     BrowserModule,
